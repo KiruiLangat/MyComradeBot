@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Rasa cache and temporary files
+.rasa/cache/
+.rasa/tmp*/
+
+# Rasa models
+models/
+
+# Configuration files
+config.yml
+credentials.yml
+endpoints.yml
+
+# Data files
+data/
+
+# Test files
+tests/
+
+# Other
+*.log
+*.bak
+*.swp

@@ -1,13 +1,21 @@
 version: "3.1"
 
+
 rules:
+  - rule: Greet the user
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - rule: Provide directions to location
+    steps:
+      - intent: ask_navigation
+        entities:
+          - location
+      - action: action_provide_navigation
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+
+  - rule: Ask for location if not provided 
+    steps: 
+      - intent: ask_navigation
+      - action: utter_ask_location

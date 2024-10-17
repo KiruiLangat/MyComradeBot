@@ -1,0 +1,12 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/sourcehut-build-0.65.0.json": [],
+        "https://json.schemastore.org/eslintrc.json": [
+            "file:///c%3A/Users/sms20/MyComradeBot/data/stories.yml"
+        ],
+        "https://json.schemastore.org/phrase.json": [
+            "file:///c%3A/Users/sms20/MyComradeBot/data/rules.yml",
+            "file:///c%3A/Users/sms20/MyComradeBot/data/nlu.yml"
+        ]
+    }
+}
