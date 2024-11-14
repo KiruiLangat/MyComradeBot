@@ -2,13 +2,17 @@ version: "3.1"
 
 intents:
   - greet
-  - goodbye
+  - ask_directions
+  - inform_location
+  - inform_nearest_landmark
   - affirm
   - deny
-  - ask_navigation
+  - goodbye
+  - thankyou
 
 entities:
   - location
+  - destination
 
 slots:
   location:
@@ -16,30 +20,54 @@ slots:
     mappings:
     - type: from_entity
       entity: location
+
+  nearest_hub:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+    
   
-  confirmation_required:
-    type: unfeaturized
-    auto_fill: false
+  destination:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: destination
+  
+  near_destination_hub:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+      
+
+    
+  
+
+actions:
+  - action_find_nearest_hub
+  - action_navigate_hubs
+  - action_provide_final_directions
 
 responses:
   utter_greet:
-  - text: "Hello Comrade, how can I assist you?"
+    - text: "Hello Comrade! How can I assist you?"
 
-  utter_ask_location:
-  - text: "Which location are you looking for?"
+  utter_ask_current_location:
+    - text: "For better navigation, please provide your current location?"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_confirm_nearest_hub:
+    - text: "The nearest hub to you is the {nearest_hub}. Would you like to proceed from there?"
 
+  utter_ask_nearest_landmark:
+    - text: "No worries! Can you tell me the nearest landmark or building you can see?"
+
+  utter_glad_to_help:
+    - text: "Awesome! Let me know if you need any more assistance."
 
   utter_goodbye:
-  - text: "Round 2 Comrade! See you soon."
+    - text: "Round 2 Comrade! Have a great day."
 
-
-
-actions:
-  - action_provide_navigation
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  utter_youre_welcome:
+    - text: "You're welcome Comrade. Let me know if you need assistance."
+     

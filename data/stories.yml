@@ -1,28 +1,63 @@
 version: "3.1"
 
-
 stories:
   - story: greet 
     steps:
     - intent: greet
     - action: utter_greet
 
-  - story: provide directions to location
+  - story: Ask for directions
     steps:
-    - intent: ask_navigation
-      entities:
-        - location
-    - action: action_provide_navigation
+      - intent: ask_directions
+        entities:
+          - destination
+      - action: utter_ask_current_location  # Bot asks the user where they are
+      - intent: inform_location  # User provides their current location
+        entities:
+          - location
+      - action: action_find_nearest_hub  # Custom action to find the nearest hub
+      - slot_was_set:
+          - nearest_hub: true
+      - action: utter_confirm_nearest_hub  # Bot confirms the nearest hub
+      - intent: affirm  # User confirms the nearest hub
+      - action: action_navigate_hubs  # Bot gives directions
+      - slot_was_set:
+          - near_destination_hub: true
+      - action: action_provide_final_directions
+      - intent: affirm  # User confirms that directions are helpful
+      - action: utter_glad_to_help  # Bot acknowledges
 
-  - story: affirming location
+  - story: User denies nearest hub
     steps:
-    - intent: affirm
-    - action: action_provide_navigation
-    - intent: deny
-    - action: action_provide_navigation
+      - intent: ask_directions
+        entities:
+          - destination
+      - action: utter_ask_current_location
+      - intent: inform_location
+        entities:
+          - location
+      - action: action_find_nearest_hub
+      - slot_was_set:
+          - nearest_hub: true
+      - action: utter_confirm_nearest_hub
+      - intent: deny  # User denies nearest hub
+      - action: utter_ask_nearest_landmark  # Bot asks for the nearest landmark
+      - intent: inform_nearest_landmark
+      - action: action_navigate_hubs
+      - slot_was_set:
+          - near_destination_hub: true
+      - action: action_provide_final_directions
+      - intent: affirm
+      - action: utter_glad_to_help
 
-  - story: ending a conversation
+  - story: Ending chat
     steps:
-    - intent: goodbye
-    - action: utter_goodbye
+      - intent: goodbye
+      - action: utter_goodbye
+  
+  - story: Repond to thank you
+    steps:
+      - intent: thankyou
+      - action: utter_youre_welcome
+
 

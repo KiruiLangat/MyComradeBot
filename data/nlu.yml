@@ -38,10 +38,22 @@ nlu:
     - correct
     - kabisa
     - hapo sawa
+    - yes please
+    - sure
+    - absolutely
+    - kindly do so
+    - definitely
+    - yep
+    - yeah
+    - yea
+    - yah
+
 
 - intent: deny
   examples: |
     - no
+    - no thank you
+    - absolutely not
     - never
     - I don't think so
     - don't like that
@@ -51,36 +63,65 @@ nlu:
     - hapana
     - hauko karibu ata
     - try again
+    - no I'm not near there
+    - I'm not close to that
+    - not really
 
-- intent: ask_navigation
+- intent: thankyou
   examples: |
-    - Where is the [library](location)?
-    - Direct me to the [BSSC](location)
-    - I need directions to the [graduation square](location)
-    - How do I get to the [football field](location)?
-    - I am looking for the [alumni building](location)
-    - I need to find the [old admin](location)
-    - Kindly show me the way to the [math department](location)
-    - I am lost, where is the [education building](location)
-    - I am trying to locate the [computer department](location)
-    - I need to find the [shopping center](location)
+    - thanks
+    - thank you
+    - thank you very much
+    - thanks a lot
+    - thank you so much
+    - asante
+    - shukran
+    - asante sana
+    - fiti
+    - poa
+    - wazi
+    - fiti brathe
 
 
-- intent: landmark
+- intent: ask_directions
   examples: |
-    - campanile
-    - library
-    - BSSC (Business Services and Students' Center)
-    - main gate
-    - first roundabout
-    - admission building
-    - old admin
-    - graduation square
-    - football field
-    - shopping center
-    - alumni building
-    - basketball courts
-    - gym
+    - Where is the [library](destination)?
+    - Direct me to the [BSSC](destination)
+    - I need directions to the [graduation square](destination)
+    - How do I get to the [football field](destination)?
+    - I am looking for the [alumni building](destination)
+    - I need to find the [old admin](destination)
+    - Kindly show me the way to the [math department](destination)
+    - I am lost, where is the [education building](destination)
+    - I am trying to locate the [computer department](destination)
+    - I need to find the [shopping center](destination)
+    - The [Science Zone (SZ)](destination)
+    - [gym](destination)?
+    - Take me to the [admission building](destination)
+    - Can you help me find the [main gate](destination)?
+
+
+- intent: inform_location
+  examples: |
+    - I am at the [main gate](location)
+    - The [library](location)
+    - [BSSC](location)
+    - [graduation square](location)
+    - [football field](location)
+    - I'm at the [alumni building](location)
+    - im at the [old admin](location)
+
+
+- intent: inform_nearest_landmark
+  examples: |
+    - I see the [library](location)
+    - The [BSSC](location)
+    - I can see the [graduation square](location)
+    - The [football field](location)
+    - I'm near the [alumni building](location)
+    - im near the [old admin](location)
+    - I'm close to the [library](location)
+    - [BSSC](location)
 
 
 

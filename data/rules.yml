@@ -1,21 +1,40 @@
 version: "3.1"
-
-
 rules:
-  - rule: Greet the user
+
+  - rule: Greet user
     steps:
       - intent: greet
       - action: utter_greet
 
-  - rule: Provide directions to location
+  - rule: Ask user for current location
     steps:
-      - intent: ask_navigation
-        entities:
-          - location
-      - action: action_provide_navigation
+      - intent: ask_directions
+      - action: utter_ask_current_location  # Ask for location
 
 
-  - rule: Ask for location if not provided 
+  - rule: User denies nearest hub
+    condition:
+      - slot_was_set:
+          - nearest_hub: true
     steps: 
-      - intent: ask_navigation
-      - action: utter_ask_location
+      - intent: deny
+      - action: utter_ask_nearest_landmark  # Bot asks for the nearest landmark
+
+  - rule: bot respons after navigating hubs
+    condition:
+      - slot_was_set:
+          - near_destination_hub: true
+    steps:
+      - action: action_provide_final_directions
+      - intent: affirm
+      - action: utter_glad_to_help
+
+  - rule: Ending chat
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Repond to thank you
+    steps:
+      - intent: thankyou
+      - action: utter_youre_welcome
